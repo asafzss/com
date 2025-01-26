@@ -10,7 +10,7 @@
         font-family: Arial, sans-serif;
         color: #ffffff;
         background-color: #000;
-        overflow: hidden; 
+        overflow: hidden;
       }
 
       .video-background {
@@ -46,23 +46,11 @@
         justify-content: center;
         text-align: center;
         background: rgba(0, 0, 0, 0.5);
-        transition: transform 0.5s ease; 
+        transition: transform 0.5s ease;
       }
 
-      .page.hidden {
-        transform: translateX(100%); 
-      }
-
-      .intro {
-        z-index: 1; 
-      }
-
-      .page2 {
-        z-index: 2; 
-      }
-
-      .embed-page {
-        z-index: 3; 
+      .hidden {
+        display: none;
       }
 
       .intro h1,
@@ -74,60 +62,155 @@
 
       .intro button,
       .page2 button,
-      .embed-page button {
-        margin-top: 40px;
-        font-size: 1.5rem;
-        padding: 15px 30px;
+      .embed-page button,
+      .install-button {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        padding: 10px 25px;
         background: linear-gradient(135deg, #00bfff, #007733);
         border: none;
-        border-radius: 10px;
+        border-radius: 50px;
         color: #ffffff;
         text-transform: uppercase;
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: auto;
       }
 
       .intro button:hover,
       .page2 button:hover,
-      .embed-page button:hover {
+      .embed-page button:hover,
+      .install-button:hover {
         transform: scale(1.1);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
       }
 
-      .embed-section {
-        display: flex;
-        justify-content: space-around;
-        padding: 50px 20px;
-        background: rgba(0, 0, 0, 0.7);
+      .button-container {
+        position: absolute;
+        bottom: 20px;
       }
 
-      .embed-card {
-        background: #222;
-        border-radius: 10px;
+      .embed-content {
+        background: rgba(0, 0, 0, 0.8);
         padding: 20px;
-        width: 30%;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        transition: transform 0.3s;
+        border-radius: 10px;
+        margin: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        width: 80%;
+        max-width: 700px;
+        text-align: left;
       }
 
-      .embed-card:hover {
-        transform: scale(1.05);
-      }
-
-      .embed-card h3 {
+      .embed-content h3 {
         font-size: 1.8rem;
         margin-bottom: 10px;
+      }
+
+      .embed-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 10px 0;
+      }
+
+      .embed-content a {
         color: #00bfff;
+        text-decoration: none;
       }
 
-      .embed-card p {
+      .embed-content a:hover {
+        text-decoration: underline;
+      }
+
+      .embed-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .embed-item {
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .install-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .install-button {
+        padding: 10px 30px;
+      }
+
+      .options {
         font-size: 1.2rem;
-        color: #ccc;
+        color: #fff;
+        margin-top: 10px;
+        text-align: left;
       }
 
-      .hidden {
-        display: none;
+      .options a {
+        color: #00bfff;
+        text-decoration: none;
+      }
+
+      .options a:hover {
+        text-decoration: underline;
+      }
+
+      .install-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        text-align: left;
+        margin-top: 20px;
+        color: #fff;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .install-text h3 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+      }
+
+      .install-video-button {
+        background-color: #00bfff;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .install-video-button:hover {
+        background-color: #007733;
+        transform: scale(1.1);
+      }
+
+      .button-back {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        background-color: #007733;
+        color: white;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: auto;
+        margin-top: 30px;
+      }
+
+      .button-back:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
       }
     </style>
   </head>
@@ -159,66 +242,107 @@
       >
         <button class="download-button">Télécharger le Jeu</button>
       </a>
-      <button onclick="showIntro()">Retour</button>
-      <button onclick="showEmbedPage()">voir les option du jeux</button>
+      <button onclick="showEmbedPage()">Voir les options du jeu</button>
+      <button onclick="showInstallPage()">How to Install Aether</button>
     </div>
 
     <div class="page embed-page hidden" id="embedPage">
-      <h2>Explorez les Options</h2>
-      <div class="embed-section">
-        <div class="embed-card">
-          <h3>Plongez dans un monde captivant</h3>
-          <p>
-            Plongez dans un monde captivant où stratégie, survie et mystère se
-            rencontrent dans une expérience RPG intense. Aether combine une
-            narration immersive avec des mécaniques de combat dynamiques, vous
-            entraînant dans un voyage de découverte, de perte et de résilience.
-          </p>
+      <div class="embed-container">
+        <div class="embed-item">
+          <div class="embed-content">
+            <h3>Plongez dans un monde captivant :</h3>
+            <p>
+              Plongez dans un monde où stratégie, survie et mystère se rencontrent
+              dans une expérience RPG intense. Heraclos combine une narration immersive
+              avec des mécaniques de combat dynamiques, vous entraînant dans un voyage
+              de découverte, de perte et de résilience.
+            </p>
+          </div>
         </div>
-        <div class="embed-card">
-          <h3>BIENVENUE À Aether</h3>
-          <p>
-            Dans le royaume dévasté d'Aether, des forces anciennes se
-            réveillent, menaçant d'anéantir tout sur leur passage. En tant que
-            dernier descendant d'une lignée ancestrale, vous êtes choisi pour
-            porter le fardeau du protecteur du royaume.
-          </p>
+        <div class="embed-item">
+          <div class="embed-content">
+            <h3>Bienvenue à Heraclos :</h3>
+            <p>
+              Dans le royaume dévasté d'Heraclos, des forces anciennes se réveillent,
+              menaçant d'anéantir tout sur leur passage. En tant que dernier descendant
+              d'une lignée ancestrale, vous êtes choisi pour porter le fardeau du
+              protecteur du royaume.
+            </p>
+          </div>
         </div>
-        <div class="embed-card">
-          <h3>EXPLOREZ LE ROYAUME DÉVASTÉ</h3>
-          <p>
-            Partez en voyage à travers les ruines d’un empire autrefois
-            glorieux. Le royaume d'Aether est fragmenté, chaque région
-            présentant ses propres dangers, des forêts hantées aux citadelles en
-            ruine.
-          </p>
+        <div class="embed-item">
+          <div class="embed-content">
+            <h3>Explorez le royaume dévasté :</h3>
+            <p>
+              Partez en voyage à travers les ruines d’un empire autrefois glorieux. Le
+              royaume d'Heraclos est fragmenté, chaque région présentant ses propres
+              dangers, des forêts hantées aux citadelles en ruine.
+            </p>
+          </div>
+        </div>
+        <div class="embed-item">
+          <div class="embed-content">
+            <h3>Combat stratégique et tactiques habiles :</h3>
+            <p>
+              Le combat dans Heraclos est dynamique et impitoyable. Armez votre
+              personnage d'un arsenal d'armes, d’armures et de capacités magiques, mais
+              choisissez judicieusement.
+            </p>
+          </div>
+        </div>
+        <div class="embed-item">
+          <div class="embed-content">
+            <h3>Empower Your Hero :</h3>
+            <p>
+              Au fur et à mesure de votre progression, vous aurez la possibilité de faire
+              évoluer votre personnage, débloquant des capacités et des équipements
+              puissants qui amélioreront votre aptitude au combat et votre survie.
+            </p>
+          </div>
         </div>
       </div>
-      <button onclick="showPage2()">Retour</button>
+      <div class="button-container">
+        <button class="button-back" onclick="showPage2()">Retour</button>
+      </div>
+    </div>
+
+    <div class="page installPage hidden" id="installPage">
+      <div class="install-text">
+        <h3>How to Install Aether</h3>
+        <p>Suivez les étapes ci-dessous pour installer le jeu :</p>
+        <ol>
+          <li>Téléchargez le fichier d'installation</li>
+          <li>Exécutez le fichier et suivez les instructions</li>
+          <li>Profitez du jeu !</li>
+        </ol>
+        <a href="https://www.youtube.com/watch?v=ePjVt-JJ3sQ">
+          <button class="install-video-button">Regarder le Tutoriel Vidéo</button>
+        </a>
+      </div>
+      <div class="button-container">
+        <button class="button-back" onclick="showPage2()">Retour</button>
+      </div>
     </div>
 
     <script>
       function showPage2() {
-        document.getElementById("embedPage").classList.add("hidden"); 
-        document.getElementById("intro").classList.add("hidden");
+        hideAllPages();
         document.getElementById("page2").classList.remove("hidden");
-        document.getElementById("page2").style.transform = "translateX(0)"; 
-        document.getElementById("intro").style.transform = "translateX(-100%)"; 
-      }
-
-      function showIntro() {
-        document.getElementById("page2").style.transform = "translateX(100%)"; 
-        document.getElementById("intro").classList.remove("hidden");
-        setTimeout(() => {
-          document.getElementById("intro").style.transform = "translateX(0)"; 
-        }, 500); 
       }
 
       function showEmbedPage() {
-        document.getElementById("page2").classList.add("hidden");
+        hideAllPages();
         document.getElementById("embedPage").classList.remove("hidden");
-        document.getElementById("embedPage").style.transform = "translateX(0)"; 
-        document.getElementById("page2").style.transform = "translateX(-100%)"; 
+      }
+
+      function showInstallPage() {
+        hideAllPages();
+        document.getElementById("installPage").classList.remove("hidden");
+      }
+
+      function hideAllPages() {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => page.classList.add('hidden'));
       }
     </script>
   </body>
