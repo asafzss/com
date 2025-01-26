@@ -10,7 +10,7 @@
         font-family: Arial, sans-serif;
         color: #ffffff;
         background-color: #000;
-        overflow: hidden; /* Empêche le défilement */
+        overflow: hidden; 
       }
 
       .video-background {
@@ -46,23 +46,23 @@
         justify-content: center;
         text-align: center;
         background: rgba(0, 0, 0, 0.5);
-        transition: transform 0.5s ease; /* Transition fluide */
+        transition: transform 0.5s ease; 
       }
 
       .page.hidden {
-        transform: translateX(100%); /* Déplace la page hors de l'écran */
+        transform: translateX(100%); 
       }
 
       .intro {
-        z-index: 1; /* Assure que la première page est au-dessus */
+        z-index: 1; 
       }
 
       .page2 {
-        z-index: 2; /* Assure que la deuxième page est au-dessus */
+        z-index: 2; 
       }
 
       .embed-page {
-        z-index: 3; /* Assure que la troisième page est au-dessus */
+        z-index: 3; 
       }
 
       .intro h1,
@@ -199,26 +199,26 @@
 
     <script>
       function showPage2() {
-        document.getElementById("embedPage").classList.add("hidden"); // Masque la page des embeds
+        document.getElementById("embedPage").classList.add("hidden"); 
         document.getElementById("intro").classList.add("hidden");
         document.getElementById("page2").classList.remove("hidden");
-        document.getElementById("page2").style.transform = "translateX(0)"; // Affiche la page 2
-        document.getElementById("intro").style.transform = "translateX(-100%)"; // Glisse la page 1 hors de l'écran
+        document.getElementById("page2").style.transform = "translateX(0)"; 
+        document.getElementById("intro").style.transform = "translateX(-100%)"; 
       }
 
       function showIntro() {
-        document.getElementById("page2").style.transform = "translateX(100%)"; // Glisse la page 2 hors de l'écran
+        document.getElementById("page2").style.transform = "translateX(100%)"; 
         document.getElementById("intro").classList.remove("hidden");
         setTimeout(() => {
-          document.getElementById("intro").style.transform = "translateX(0)"; // Affiche la page 1
-        }, 500); // Délai pour permettre à l'animation de se terminer
+          document.getElementById("intro").style.transform = "translateX(0)"; 
+        }, 500); 
       }
 
       function showEmbedPage() {
         document.getElementById("page2").classList.add("hidden");
         document.getElementById("embedPage").classList.remove("hidden");
-        document.getElementById("embedPage").style.transform = "translateX(0)"; // Affiche la page des embeds
-        document.getElementById("page2").style.transform = "translateX(-100%)"; // Glisse la page 2 hors de l'écran
+        document.getElementById("embedPage").style.transform = "translateX(0)"; 
+        document.getElementById("page2").style.transform = "translateX(-100%)"; 
       }
     </script>
   </body>
