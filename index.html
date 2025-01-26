@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aether - Jeu d'Aventure Épique</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: #ffffff;
+        background-color: #000;
+        overflow: hidden; /* Empêche le défilement */
+      }
+
+      .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .video-background video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+      }
+
+      .page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        transition: transform 0.5s ease; /* Transition fluide */
+      }
+
+      .page.hidden {
+        transform: translateX(100%); /* Déplace la page hors de l'écran */
+      }
+
+      .intro {
+        z-index: 1; /* Assure que la première page est au-dessus */
+      }
+
+      .page2 {
+        z-index: 2; /* Assure que la deuxième page est au-dessus */
+      }
+
+      .embed-page {
+        z-index: 3; /* Assure que la troisième page est au-dessus */
+      }
+
+      .intro h1,
+      .page2 h2 {
+        font-size: 4rem;
+        margin: 0;
+        text-shadow: 0 0 10px #ffffff;
+      }
+
+      .intro button,
+      .page2 button,
+      .embed-page button {
+        margin-top: 40px;
+        font-size: 1.5rem;
+        padding: 15px 30px;
+        background: linear-gradient(135deg, #00bfff, #007733);
+        border: none;
+        border-radius: 10px;
+        color: #ffffff;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .intro button:hover,
+      .page2 button:hover,
+      .embed-page button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+      }
+
+      .embed-section {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px 20px;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .embed-card {
+        background: #222;
+        border-radius: 10px;
+        padding: 20px;
+        width: 30%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s;
+      }
+
+      .embed-card:hover {
+        transform: scale(1.05);
+      }
+
+      .embed-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: #00bfff;
+      }
+
+      .embed-card p {
+        font-size: 1.2rem;
+        color: #ccc;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="video-background">
+      <video autoplay muted loop>
+        <source
+          src="https://github.com/asafzss/sa-swag/releases/download/de/video.mp4"
+          type="video/mp4"
+        />
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video>
+    </div>
+
+    <div class="page intro" id="intro">
+      <h1>Aether - Jeu d'Aventure Épique</h1>
+      <button onclick="showPage2()">Entrer</button>
+    </div>
+
+    <div class="page page2 hidden" id="page2">
+      <h2>Bienvenue dans Aether</h2>
+      <p>
+        Découvrez un monde où la mythologie rencontre l'aventure. Aether vous
+        plonge dans une épopée extraordinaire, pleine de défis et de mystères.
+      </p>
+      <a
+        href="https://github.com/asafzss/sa-swag/releases/download/de/launcher.msi"
+        download
+      >
+        <button class="download-button">Télécharger le Jeu</button>
+      </a>
+      <button onclick="showIntro()">Retour</button>
+      <button onclick="showEmbedPage()">voir les option du jeux</button>
+    </div>
+
+    <div class="page embed-page hidden" id="embedPage">
+      <h2>Explorez les Options</h2>
+      <div class="embed-section">
+        <div class="embed-card">
+          <h3>Plongez dans un monde captivant</h3>
+          <p>
+            Plongez dans un monde captivant où stratégie, survie et mystère se
+            rencontrent dans une expérience RPG intense. Aether combine une
+            narration immersive avec des mécaniques de combat dynamiques, vous
+            entraînant dans un voyage de découverte, de perte et de résilience.
+          </p>
+        </div>
+        <div class="embed-card">
+          <h3>BIENVENUE À Aether</h3>
+          <p>
+            Dans le royaume dévasté d'Aether, des forces anciennes se
+            réveillent, menaçant d'anéantir tout sur leur passage. En tant que
+            dernier descendant d'une lignée ancestrale, vous êtes choisi pour
+            porter le fardeau du protecteur du royaume.
+          </p>
+        </div>
+        <div class="embed-card">
+          <h3>EXPLOREZ LE ROYAUME DÉVASTÉ</h3>
+          <p>
+            Partez en voyage à travers les ruines d’un empire autrefois
+            glorieux. Le royaume d'Aether est fragmenté, chaque région
+            présentant ses propres dangers, des forêts hantées aux citadelles en
+            ruine.
+          </p>
+        </div>
+      </div>
+      <button onclick="showPage2()">Retour</button>
+    </div>
+
+    <script>
+      function showPage2() {
+        document.getElementById("embedPage").classList.add("hidden"); // Masque la page des embeds
+        document.getElementById("intro").classList.add("hidden");
+        document.getElementById("page2").classList.remove("hidden");
+        document.getElementById("page2").style.transform = "translateX(0)"; // Affiche la page 2
+        document.getElementById("intro").style.transform = "translateX(-100%)"; // Glisse la page 1 hors de l'écran
+      }
+
+      function showIntro() {
+        document.getElementById("page2").style.transform = "translateX(100%)"; // Glisse la page 2 hors de l'écran
+        document.getElementById("intro").classList.remove("hidden");
+        setTimeout(() => {
+          document.getElementById("intro").style.transform = "translateX(0)"; // Affiche la page 1
+        }, 500); // Délai pour permettre à l'animation de se terminer
+      }
+
+      function showEmbedPage() {
+        document.getElementById("page2").classList.add("hidden");
+        document.getElementById("embedPage").classList.remove("hidden");
+        document.getElementById("embedPage").style.transform = "translateX(0)"; // Affiche la page des embeds
+        document.getElementById("page2").style.transform = "translateX(-100%)"; // Glisse la page 2 hors de l'écran
+      }
+    </script>
+  </body>
+</html>
